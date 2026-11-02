@@ -16,10 +16,10 @@ button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.
 .side-header:after{content:"";display:block;position:absolute;bottom:0;height:2px;background:#fff;opacity:.9}
 .side.left .side-header:after{left:13%;right:2%}
 .side.right .side-header:after{left:2%;right:13%}
-.team-name{background:transparent;color:#fff;font-weight:400;border:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:86%;font-size:clamp(20px,10.4vh,64px);height:100%;padding:0;display:flex;align-items:center;justify-content:center;text-align:center;text-transform:uppercase}
-.sets{position:absolute;top:0;color:var(--yellow);font-size:clamp(27px,20.5vh,145px);font-weight:600;line-height:1;letter-spacing:-.04em;z-index:2}
+.team-name{background:transparent;color:#fff;font-weight:400;border:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:93%;font-size:clamp(21px,11.8vh,76px);height:100%;padding:0;display:flex;align-items:center;justify-content:center;text-align:center;text-transform:uppercase}
+.sets{position:absolute;top:0;color:var(--yellow);font-size:clamp(35px,27.3vh,193px);font-weight:600;line-height:1;letter-spacing:-.04em;z-index:2}
 .side.left .sets{left:1.5vw}.side.right .sets{right:1.5vw}
-.points{border:0;background:transparent;color:var(--accent);flex:1;min-height:0;width:100%;display:flex;justify-content:center;align-items:center;padding:0 0 2vh;line-height:.85;font-family:Arial,Helvetica,sans-serif;font-weight:400;font-size:min(71vh,34vw);font-variant-numeric:tabular-nums;letter-spacing:-.055em;user-select:none;touch-action:manipulation}
+.points{border:0;background:transparent;color:var(--accent);flex:1;min-height:0;width:100%;display:flex;justify-content:center;align-items:center;padding:0 0 2vh;line-height:.85;font-family:Arial,Helvetica,sans-serif;font-weight:400;font-size:min(78vh,38vw);font-variant-numeric:tabular-nums;letter-spacing:-.055em;user-select:none;touch-action:manipulation}
 .side.left .points>span{transform:translateX(-4%)}.side.right .points>span{transform:translateX(4%)}
 .points:active{background:#111}
 /* SET 1, Undo, Promena strana i Minusi: potpuno jednake visine; zupcanik zauzima ostatak. */
@@ -29,22 +29,28 @@ button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.
 .control svg{width:min(4.4vh,24px);height:min(4.4vh,24px);fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 #settings svg{width:min(8vh,43px);height:min(8vh,43px)}
 .control:active,.minus:active{background:#555}
-.minus-row{min-height:0;display:grid;grid-template-columns:1fr 1fr;position:relative}
+.minus-row{min-height:0;display:grid;grid-template-columns:1fr 1fr;position:relative;z-index:2;background:rgba(255,255,255,.025)}
 .minus-row:after{position:absolute;content:"";top:0;bottom:0;left:50%;width:3px;transform:translateX(-50%);background:#000;pointer-events:none}
-.minus{border:0;background:transparent;color:#050505;display:flex;justify-content:center;align-items:center;width:100%;height:100%;font-size:clamp(18px,5.5vh,42px);font-weight:400;padding-bottom:4px}
+.minus{border:0;background:transparent;color:#050505;display:flex;justify-content:center;align-items:center;width:100%;height:100%;font-size:clamp(18px,5.5vh,42px);font-weight:400;padding-bottom:4px;position:relative;z-index:1;touch-action:manipulation}
+/* Nevidljivo prosirenje hit-povrsine ka spoljnim ivicama; izgled dugmeta ostaje isti. */
+.minus:first-child{margin-left:-12px;width:calc(100% + 12px)}
+.minus:last-child{margin-right:-12px;width:calc(100% + 12px)}
 #overlay{position:fixed;inset:0;z-index:10;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:16px}
 #overlay.show{display:flex}
 .dialog{width:min(95vw,620px);max-height:95vh;overflow:auto;background:#1b1b1b;border:1px solid #444;border-radius:16px;padding:16px 20px;color:white;box-shadow:0 8px 30px #000}
 .dialog h1{font-size:clamp(20px,5vh,29px);margin:0 0 8px;text-align:center;font-weight:500}
 .dialog h2{font-size:clamp(17px,4.5vh,23px);margin:8px 0;font-weight:500}
-.settings-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
-.settings-head h1{margin:0;text-align:left;flex:1}
+.settings-head{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px;margin-bottom:10px}
+.settings-head h1{margin:0;text-align:left;white-space:nowrap;font-size:clamp(15px,4.1vh,24px)}
 .settings-gear{color:#fff;opacity:.5;display:inline-block}
-.settings-head .btn{flex:0 0 auto;min-width:auto;padding:7px 12px;min-height:34px;font-size:clamp(12px,3.2vh,15px)}
+.settings-head .btn{justify-self:end;min-width:0;padding:7px 11px;min-height:34px;font-size:clamp(12px,3.2vh,15px)}
+.settings-head #start-new{background:transparent;border-color:#64AAFF;color:#64AAFF}
+.settings-head #start-new:active{background:#12304d}
 .dialog p{margin:5px 0 12px;color:#bbb;font-size:clamp(12px,3.6vh,17px)}
 #settings{color:rgba(255,255,255,.5)}
 .dialog p.settings-help{font-size:11px;color:#64aaff;line-height:1.35;margin:5px 0 10px}
-.fullscreen-action{background:#292929;color:#fff;border:1px solid #666;border-radius:7px;min-height:36px;padding:7px 13px;margin:4px 0 5px;max-width:100%;font-size:clamp(12px,3.2vh,15px)}
+.fullscreen-action{display:flex;align-items:center;justify-content:center;width:38px;height:36px;background:#292929;color:#fff;border:1px solid #666;border-radius:7px;padding:7px;margin:0;justify-self:center}
+.fullscreen-action svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .fullscreen-action:active{background:#444}
 .fullscreen-action:disabled{color:#888;border-color:#444}
 #fullscreen-feedback{margin:3px 0 7px;font-size:11px;color:#64aaff;line-height:1.3}
@@ -68,13 +74,22 @@ button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.
 #new-name{text-transform:uppercase}
 .field select{background:#090909;color:#fff;border:1px solid #555;border-radius:6px;padding:8px;min-width:90px}
 .field input[type='checkbox']{width:22px;height:22px;accent-color:#efdf36}
-.score-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:10px 0}
-.score-mode{display:flex;align-items:center;gap:9px;background:#242424;border:1px solid #444;padding:9px 12px;border-radius:8px;cursor:pointer;font-size:clamp(12px,3.6vh,17px);min-height:38px}
+.score-modes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 0}
+.score-mode{display:flex;align-items:center;justify-content:center;gap:0;min-width:0;background:#242424;border:1px solid #444;padding:9px 5px;border-radius:8px;cursor:pointer;font-size:clamp(10px,2.5vw,15px);min-height:40px;position:relative;text-align:center;white-space:nowrap}
 .score-mode:has(input:checked){border-color:#e5db39;background:#343326}
-.score-mode input{accent-color:#fff500;flex:0 0 auto;width:17px;height:17px;margin:0}
+.score-mode input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;margin:0}
+.score-mode:focus-within{outline:2px solid #83baff;outline-offset:2px}
 .custom-limits{border-top:1px solid #444;margin-top:9px;padding-top:5px}
 .custom-limits[hidden]{display:none}
-@media (max-width:490px){.score-modes{grid-template-columns:1fr}}
+/* Male sirine: cetiri opcije i dalje ostaju u istom redu. */
+@media (max-width:490px){.score-modes{gap:4px}.score-mode{padding:7px 2px;font-size:clamp(9px,2.5vw,12px)}}
+.font-controls{display:flex;align-items:center;justify-content:center;gap:18px;margin:6px 0 8px}
+.font-step{display:flex;align-items:center;justify-content:center;width:48px;min-height:42px;border:1px solid #777;border-radius:8px;background:#292929;color:#fff;font-size:25px;font-weight:400;touch-action:manipulation}
+.font-step:active{background:#444}
+.font-value{font-size:22px;min-width:86px;text-align:center;color:#fff;font-variant-numeric:tabular-nums}
+.font-preview{display:flex;align-items:center;justify-content:center;height:86px;padding:5px;background:#060606;border:1px solid #383838;border-radius:9px;overflow:hidden;margin-top:8px}
+.font-preview span{display:block;font-weight:400;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.055em;white-space:nowrap}
+@media (max-height:400px){.font-preview{height:62px}.font-controls{margin:2px 0}.font-step{min-height:36px}}
 .saved{max-height:30vh;overflow:auto;border:1px solid #333;border-radius:7px}
 .saved-row{display:flex;gap:8px;align-items:center;justify-content:space-between;min-height:40px;border-bottom:1px solid #333}
 .saved-row:last-child{border-bottom:0}
@@ -111,12 +126,14 @@ button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.
 'use strict';
 const KEY='odbojkaski-semafor-v1';
 const PRESETS={standard:[25,25,15],short:[21,21,15],quick:[15,15,11]};
-const DEFAULTS=()=>({names:['EKIPA A','EKIPA B'],points:[0,0],sets:[0,0],setIndex:1,limits:[25,25,15],mode:'standard',customLimits:[25,25,15],sideMap:[0,1],color:0,savedNames:[],history:[],status:'playing',active:false,swapNext:true});
+const DEFAULTS=()=>({names:['EKIPA A','EKIPA B'],points:[0,0],sets:[0,0],setIndex:1,limits:[25,25,15],mode:'standard',customLimits:[25,25,15],sideMap:[0,1],color:0,pointFontPercent:112,savedNames:[],history:[],status:'playing',active:false,swapNext:true});
 const COLORS=['#FFFFFF','#FFFF00','#00FF00'];
+const FONT_MIN=80,FONT_MAX=160,FONT_STEP=4;
+const normalizedFont=n=>Number.isFinite(Number(n))?Math.max(FONT_MIN,Math.min(FONT_MAX,FONT_MIN+Math.round((Number(n)-FONT_MIN)/FONT_STEP)*FONT_STEP)):112;
 let state=DEFAULTS();let dialogType='';let pendingDelete=null;let wakeLock=null;
 let settingsListeners=null;
 function read(){try{const obj=JSON.parse(localStorage.getItem(KEY));if(obj&&Array.isArray(obj.names)&&Array.isArray(obj.points)&&Array.isArray(obj.sets)&&Array.isArray(obj.sideMap)){
- state={...DEFAULTS(),...obj};state.history=Array.isArray(state.history)?state.history.slice(-80):[];state.savedNames=Array.isArray(state.savedNames)?[...new Set(state.savedNames.filter(n=>typeof n==='string').map(n=>n.trim().toLocaleUpperCase('sr-RS')).filter(Boolean))]:[];state.names=state.names.map((n,i)=>String(n||`EKIPA ${i===0?'A':'B'}`).trim().toLocaleUpperCase('sr-RS'));
+ state={...DEFAULTS(),...obj};state.pointFontPercent=normalizedFont(state.pointFontPercent);state.history=Array.isArray(state.history)?state.history.slice(-80):[];state.savedNames=Array.isArray(state.savedNames)?[...new Set(state.savedNames.filter(n=>typeof n==='string').map(n=>n.trim().toLocaleUpperCase('sr-RS')).filter(Boolean))]:[];state.names=state.names.map((n,i)=>String(n||`EKIPA ${i===0?'A':'B'}`).trim().toLocaleUpperCase('sr-RS'));
  state.limits=Array.isArray(state.limits)&&state.limits.length===3?state.limits.map(Number):[25,25,15];
  const inferred=Object.keys(PRESETS).find(k=>PRESETS[k].every((n,i)=>n===state.limits[i]))||'custom';
  state.mode=['standard','short','quick','custom'].includes(obj.mode)?obj.mode:inferred;
@@ -128,16 +145,32 @@ function displayId(side){return state.sideMap[side]}
 function plainName(id){return (state.names[id]&&state.names[id].trim()||`EKIPA ${id===0?'A':'B'}`).toLocaleUpperCase('sr-RS')}
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function snapshot(){const {history,...data}=state;state.history.push(JSON.parse(JSON.stringify(data)));if(state.history.length>80)state.history.shift()}
-function render(){document.documentElement.style.setProperty('--accent',COLORS[state.color]||COLORS[0]);for(let side=0;side<2;side++){let id=displayId(side);let sideName=side===0?'left':'right';document.getElementById('sets-'+sideName).textContent=state.sets[id];let nameEl=document.getElementById('name-'+sideName);nameEl.textContent=plainName(id);nameEl.style.fontSize=`clamp(16px,${Math.min(10.4,154/(plainName(id).length+5)).toFixed(2)}vh,64px)`;let p=document.querySelector('#points-'+sideName+' span');p.textContent=state.points[id];p.parentElement.style.fontSize=(Math.max(...state.points)>99?'min(59vh,27vw)':'min(71vh,34vw)')}
- document.getElementById('set-label').textContent='SET '+state.setIndex;document.getElementById('undo').disabled=!state.history.length;save()}
+function fitPointFont(){
+ const btns=[document.getElementById('points-left'),document.getElementById('points-right')];
+ const spans=btns.map(b=>b.querySelector('span'));
+ const isLong=Math.max(...state.points)>99;
+ const base=Math.min(window.innerHeight*(isLong?.56:.78),window.innerWidth*(isLong?.25:.38));
+ let size=base*normalizedFont(state.pointFontPercent)/100;
+ btns.forEach(b=>b.style.fontSize=size+'px');
+ spans.forEach((sp,i)=>sp.style.transform=`translateX(${i===0?'-4%':'4%'}) scaleX(1)`);
+ // Ostavljamo bezbedne granice za velike, ukljucujuci trocifrene rezultate.
+ const heightRatio=Math.min(...spans.map((sp,i)=>(btns[i].clientHeight*.92)/Math.max(1,sp.getBoundingClientRect().height)));
+ size*=Math.min(1,heightRatio);
+ btns.forEach(b=>b.style.fontSize=size+'px');
+ let xRatio=Math.min(1,...spans.map((sp,i)=>(btns[i].clientWidth*.96)/Math.max(1,sp.offsetWidth)));
+ if(xRatio<.76){size*=xRatio/.76;btns.forEach(b=>b.style.fontSize=size+'px');xRatio=.76}
+ spans.forEach((sp,i)=>sp.style.transform=`translateX(${i===0?'-4%':'4%'}) scaleX(${xRatio})`);
+}
+function render(){document.documentElement.style.setProperty('--accent',COLORS[state.color]||COLORS[0]);for(let side=0;side<2;side++){let id=displayId(side);let sideName=side===0?'left':'right';document.getElementById('sets-'+sideName).textContent=state.sets[id];let nameEl=document.getElementById('name-'+sideName);nameEl.textContent=plainName(id);nameEl.style.fontSize=`clamp(15px,${Math.min(11.8,182/(plainName(id).length+5)).toFixed(2)}vh,76px)`;let p=document.querySelector('#points-'+sideName+' span');p.textContent=state.points[id]}
+ fitPointFont();document.getElementById('set-label').textContent='SET '+state.setIndex;document.getElementById('undo').disabled=!state.history.length;save()}
 function currentWinner(){let p=state.points,need=state.limits[Math.min(state.setIndex-1,2)];for(let i=0;i<2;i++)if(p[i]>=need&&p[i]-p[1-i]>=2)return i;return null}
 function add(side){if(state.status!=='playing')return;let id=displayId(side);snapshot();state.points[id]++;render();let winner=currentWinner();if(winner!==null){state.status='set-ended';state.swapNext=true;render();showEnd()}}
 function subtract(side){if(state.status==='match-ended')return;let id=displayId(side);if(state.points[id]===0)return;snapshot();state.points[id]--;state.status='playing';render()}
 function undo(){if(!state.history.length)return;const previous=state.history.pop();const h=state.history;state={...state,...previous,history:h};render();closeDialog();if(state.status==='set-ended')showEnd();else if(state.status==='match-ended')showMatchEnd()}
 function swap(){if(state.status!=='playing')return;snapshot();state.sideMap.reverse();render()}
-function reset(){let savedNames=state.savedNames.slice(),limits=state.limits.slice(),color=state.color,mode=state.mode,customLimits=state.customLimits.slice();state={...DEFAULTS(),savedNames,limits,color,mode,customLimits,active:true};render();closeDialog()}
+function reset(){let savedNames=state.savedNames.slice(),limits=state.limits.slice(),color=state.color,mode=state.mode,customLimits=state.customLimits.slice(),pointFontPercent=state.pointFontPercent;state={...DEFAULTS(),savedNames,limits,color,mode,customLimits,pointFontPercent,active:true};render();closeDialog()}
 function closeDialog(){if(settingsListeners){settingsListeners.abort();settingsListeners=null;}document.getElementById('overlay').classList.remove('show');dialogType='';pendingDelete=null}
-function showDialog(type,html){if(type!=='settings'&&settingsListeners){settingsListeners.abort();settingsListeners=null;}dialogType=type;document.getElementById('dialog').innerHTML=html;document.getElementById('overlay').classList.add('show')}
+function showDialog(type,html){if(type!=='settings'&&settingsListeners){settingsListeners.abort();settingsListeners=null;}const previousType=dialogType;dialogType=type;const dialog=document.getElementById('dialog');dialog.innerHTML=html;if(previousType!==type)dialog.scrollTop=0;document.getElementById('overlay').classList.add('show')}
 function viewScore(){let a=displayId(0),b=displayId(1);return `<div class="scores-card"><div class="scores-grid"><div class="team">${esc(plainName(a))}</div><div class="middle-detail">SET ${state.setIndex}</div><div class="team">${esc(plainName(b))}</div><strong>${state.points[a]}</strong><div class="middle-detail">${state.sets[a]} : ${state.sets[b]}<br><span class="muted">setovi</span></div><strong>${state.points[b]}</strong></div></div>`}
 function showHome(){let desc=state.active?'POSLEDNJA UTAKMICA':'NEMA SAČUVANE UTAKMICE';showDialog('home',`<h1>ODBOJKAŠKI SEMAFOR</h1><p style="text-align:center">${desc}</p>${state.active?viewScore():''}<div class="buttons">${state.active?'<button class="btn primary" id="continue">▶ Nastavi utakmicu</button>':''}<button class="btn" id="new-home">＋ Nova utakmica</button></div>`);let cont=document.getElementById('continue');if(cont)cont.onclick=()=>{closeDialog();if(state.status==='set-ended')showEnd();else if(state.status==='match-ended')showMatchEnd()};document.getElementById('new-home').onclick=()=>confirmNew()}
 function confirmNew(){if(!state.active||state.status==='match-ended'){reset();return}showDialog('new',`<h1>Nova utakmica?</h1><p>Poeni i setovi prethodne utakmice biće obrisani. Sačuvani nazivi ekipa ostaju dostupni.</p><div class="buttons"><button class="btn" id="new-cancel">Odustani</button><button class="btn danger" id="new-ok">Pokreni novu</button></div>`);document.getElementById('new-cancel').onclick=showHome;document.getElementById('new-ok').onclick=reset}
@@ -150,11 +183,12 @@ function showSettings(){
  const modes=[['standard','25, 25, 15'],['short','21, 21, 15'],['quick','15, 15, 11'],['custom','Prilagođeno']];
  let tempMode=state.mode;
  let tempColor=state.color;
+ let tempFont=normalizedFont(state.pointFontPercent);
  let tempCustom=state.customLimits.slice();
  const build=()=>{
   const radio=modes.map(([key,label])=>`<label class="score-mode"><input type="radio" name="scoring-mode" value="${key}" ${tempMode===key?'checked':''}><span>${label}</span></label>`).join('');
   const selects=tempCustom.map((v,i)=>`<div class="field"><label for="limit-${i}">${i+1}. set — do poena</label><select id="limit-${i}">${(i===2?[11,15,21,25]:[15,21,25]).map(x=>`<option value="${x}" ${v===x?'selected':''}>${x}</option>`).join('')}</select></div>`).join('');
-  return `<div class="settings-head"><h1><span class="settings-gear" aria-hidden="true">⚙</span> Podešavanja</h1><button class="btn danger" id="start-new">Nova utakmica</button></div><h2>Bodovanje</h2><p class="settings-help">Dva dobijena seta, uz najmanje dva poena razlike.</p><div class="score-modes" role="radiogroup" aria-label="Broj poena po setovima">${radio}</div><div id="custom-settings" class="custom-limits" ${tempMode!=='custom'?'hidden':''}>${selects}</div><h2>Boja rezultata</h2><div class="color-swatches">${COLORS.map((c,i)=>`<button class="swatch ${tempColor===i?'active':''}" style="background:${c}" data-color="${i}" title="${['Bela','Žuta','Zelena'][i]}"></button>`).join('')}</div><h2>Ekran</h2><button type="button" class="fullscreen-action" id="toggle-fullscreen">⛶ Uključi ceo ekran</button><p id="fullscreen-feedback" role="status" aria-live="polite"></p><p class="settings-help">Ekran ostaje uključen kada pregledač podržava tu mogućnost. Osvetljenost u ovoj probnoj verziji podešava se na samom telefonu.</p><div class="buttons standard"><button class="btn" id="cancel-settings">Cancel</button><button class="btn primary" id="ok-settings">OK</button></div>`;
+  return `<div class="settings-head"><h1><span class="settings-gear" aria-hidden="true">⚙</span> Podešavanja</h1><button type="button" class="fullscreen-action" id="toggle-fullscreen" title="Uključi ceo ekran" aria-label="Uključi ceo ekran"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg></button><button class="btn danger" id="start-new">Nova utakmica</button></div><h2>Bodovanje</h2><p class="settings-help">Dva dobijena seta, uz najmanje dva poena razlike.</p><div class="score-modes" role="radiogroup" aria-label="Broj poena po setovima">${radio}</div><div id="custom-settings" class="custom-limits" ${tempMode!=='custom'?'hidden':''}>${selects}</div><h2>Boja rezultata</h2><div class="color-swatches">${COLORS.map((c,i)=>`<button class="swatch ${tempColor===i?'active':''}" style="background:${c}" data-color="${i}" title="${['Bela','Žuta','Zelena'][i]}"></button>`).join('')}</div><h2>Veličina poena</h2><div class="font-controls"><button type="button" class="font-step" id="font-minus" aria-label="Smanji veličinu poena" ${tempFont<=FONT_MIN?'disabled':''}>−</button><span class="font-value" id="font-value" aria-live="polite">${tempFont}%</span><button type="button" class="font-step" id="font-plus" aria-label="Povećaj veličinu poena" ${tempFont>=FONT_MAX?'disabled':''}>+</button></div><div class="font-preview" aria-label="Pregled veličine broja poena"><span id="font-preview-number" style="color:${COLORS[tempColor]};font-size:${Math.round(52*tempFont/100)}px">25</span></div><p id="fullscreen-feedback" role="status" aria-live="polite" hidden></p><div class="buttons standard"><button class="btn" id="cancel-settings">Cancel</button><button class="btn primary" id="ok-settings">OK</button></div>`;
  };
  const renderSettings=()=>{
   if(settingsListeners)settingsListeners.abort();
@@ -172,34 +206,46 @@ function showSettings(){
    });
   }
   document.querySelectorAll('[data-color]').forEach(el=>el.onclick=()=>{tempColor=Number(el.dataset.color);renderSettings()});
+  const updateFontStep=delta=>{
+   tempFont=Math.max(FONT_MIN,Math.min(FONT_MAX,tempFont+delta));
+   document.getElementById('font-value').textContent=tempFont+'%';
+   document.getElementById('font-preview-number').style.fontSize=Math.round(52*tempFont/100)+'px';
+   document.getElementById('font-minus').disabled=tempFont<=FONT_MIN;
+   document.getElementById('font-plus').disabled=tempFont>=FONT_MAX;
+  };
+  document.getElementById('font-minus').onclick=()=>updateFontStep(-FONT_STEP);
+  document.getElementById('font-plus').onclick=()=>updateFontStep(FONT_STEP);
   const fullscreenButton=document.getElementById('toggle-fullscreen');
   const fullscreenFeedback=document.getElementById('fullscreen-feedback');
+  const fullscreenMessage=s=>{fullscreenFeedback.textContent=s;fullscreenFeedback.hidden=false};
   function refreshFullscreenButton(){
    if(!fullscreenButton?.isConnected)return;
    const isFull=Boolean(document.fullscreenElement);
-   fullscreenButton.textContent=isFull?'⛶ Isključi ceo ekran':'⛶ Uključi ceo ekran';
+   fullscreenButton.setAttribute('aria-label',isFull?'Isključi ceo ekran':'Uključi ceo ekran');
+   fullscreenButton.title=isFull?'Isključi ceo ekran':'Uključi ceo ekran';
    fullscreenButton.disabled=!isFull && typeof document.documentElement.requestFullscreen!=='function';
-   if(fullscreenButton.disabled)fullscreenFeedback.textContent='Ovaj pregledač ne podržava prikaz preko celog ekrana.';
+   if(fullscreenButton.disabled)fullscreenMessage('Ovaj pregledač ne podržava prikaz preko celog ekrana.');
   }
   refreshFullscreenButton();
   fullscreenButton.onclick=()=>{
    if(document.fullscreenElement){
-    if(document.exitFullscreen)document.exitFullscreen().catch(()=>{fullscreenFeedback.textContent='Nije moguće isključiti prikaz. Koristi dugme Nazad na telefonu.'});
+    if(document.exitFullscreen)document.exitFullscreen().catch(()=>{fullscreenMessage('Nije moguće isključiti prikaz. Koristi dugme Nazad na telefonu.')});
     return;
    }
    if(typeof document.documentElement.requestFullscreen!=='function'){
-    fullscreenFeedback.textContent='Full screen nije dostupan u ovom pregledaču.';
+    fullscreenMessage('Full screen nije dostupan u ovom pregledaču.');
     return;
    }
    // Poziva se direktno na dodir radi Chrome pravila o korisničkoj aktivaciji.
    document.documentElement.requestFullscreen().catch(()=>{
-    fullscreenFeedback.textContent='Chrome nije dozvolio prikaz preko celog ekrana. Pokušaj da otvoriš fajl direktno u Chrome-u.';
+    fullscreenMessage('Chrome nije dozvolio prikaz preko celog ekrana. Pokušaj da otvoriš fajl direktno u Chrome-u.');
    });
   };
   document.addEventListener('fullscreenchange',refreshFullscreenButton,{signal:settingsListeners.signal});
   document.getElementById('cancel-settings').onclick=closeDialog;
   document.getElementById('ok-settings').onclick=()=>{
    state.color=tempColor;
+   state.pointFontPercent=tempFont;
    state.mode=tempMode;
    state.customLimits=tempCustom.slice();
    state.limits=(tempMode==='custom'?tempCustom:PRESETS[tempMode]).slice();
@@ -207,180 +253,13 @@ function showSettings(){
    closeDialog();
    if(state.status==='playing'&&currentWinner()!==null){state.status='set-ended';render();showEnd()}
   };
-  document.getElementById('start-new').onclick=()=>{
-   state.color=tempColor;
-   state.mode=tempMode;
-   state.customLimits=tempCustom.slice();
-   state.limits=(tempMode==='custom'?tempCustom:PRESETS[tempMode]).slice();
-   render();
-   confirmNew();
-  };
+  document.getElementById('start-new').onclick=confirmNew;
  };
  renderSettings();
 }
 async function keepAwake(){try{if('wakeLock' in navigator){wakeLock=await navigator.wakeLock.request('screen')}}catch(e){console.warn('Wake lock unavailable',e)}}
-function init(){read();render();showHome();keepAwake();document.getElementById('points-left').onclick=()=>add(0);document.getElementById('points-right').onclick=()=>add(1);document.getElementById('minus-left').onclick=()=>subtract(0);document.getElementById('minus-right').onclick=()=>subtract(1);document.getElementById('undo').onclick=undo;document.getElementById('swap').onclick=swap;document.getElementById('settings').onclick=showSettings;document.getElementById('name-left').onclick=()=>showNames(0);document.getElementById('name-right').onclick=()=>showNames(1);document.addEventListener('visibilitychange',()=>{if(!document.hidden)keepAwake()});}
+function init(){read();render();showHome();keepAwake();document.getElementById('overlay').addEventListener('click',e=>{if(e.target===e.currentTarget&&dialogType==='settings')closeDialog()});window.addEventListener('resize',fitPointFont);document.getElementById('points-left').onclick=()=>add(0);document.getElementById('points-right').onclick=()=>add(1);document.getElementById('minus-left').onclick=()=>subtract(0);document.getElementById('minus-right').onclick=()=>subtract(1);document.getElementById('undo').onclick=undo;document.getElementById('swap').onclick=swap;document.getElementById('settings').onclick=showSettings;document.getElementById('name-left').onclick=()=>showNames(0);document.getElementById('name-right').onclick=()=>showNames(1);document.addEventListener('visibilitychange',()=>{if(!document.hidden)keepAwake()});}
 init();
 </script>
-  
-<style>
-.team-name {
-  max-width: 93%;
-  padding: 0;
-}
-.sets {
-  font-size: clamp(35px, 27.3vh, 193px);
-  font-weight: 600;
-}
-.points {
-  font-size: min(78vh, 38vw);
-}
-#settings svg {
-  width: min(6.6vh, 36px);
-  height: min(6.6vh, 36px);
-}
-.settings-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: center;
-  gap: 8px;
-}
-.settings-head h1 {
-  margin: 0;
-  text-align: left;
-  white-space: nowrap;
-  font-size: clamp(15px, 4.1vh, 24px);
-}
-.settings-head #start-new {
-  justify-self: end;
-  min-width: 0;
-  background: transparent;
-  border: 1px solid #64aaff;
-  color: #64aaff;
-  padding: 7px 11px;
-  min-height: 34px;
-}
-.fullscreen-action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-self: center;
-  width: 38px;
-  height: 36px;
-  margin: 0;
-  padding: 0;
-  background: #292929;
-  border: 1px solid #666;
-  border-radius: 7px;
-  font-size: 0 !important;
-}
-.fullscreen-action::before {
-  content: "⛶";
-  font-size: 25px;
-  color: #fff;
-  line-height: 1;
-}
-.score-mode {
-  position: relative;
-  gap: 0;
-}
-.score-mode input[type=radio] {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-  margin: 0;
-  pointer-events: none;
-}
-.score-mode:focus-within {
-  outline: 2px solid #83baff;
-  outline-offset: 2px;
-}
-</style>
-<script>
-(() => {
-  const oldRender = render;
-  render = function() {
-    oldRender();
-    for (let side = 0; side < 2; side++) {
-      const id = displayId(side);
-      const label = side === 0 ? 'left' : 'right';
-      const name = plainName(id);
-      document.getElementById('name-' + label).style.fontSize =
-        `clamp(15px,${Math.min(11.8,182/(name.length+5)).toFixed(2)}vh,76px)`;
-      document.getElementById('points-' + label).style.fontSize =
-        Math.max(...state.points) > 99
-          ? 'min(56vh,25vw)'
-          : 'min(78vh,38vw)';
-    }
-  };
-
-  const oldShowDialog = showDialog;
-  showDialog = function(type, html) {
-    oldShowDialog(type, html);
-    if (type === 'settings') {
-      const header = document.querySelector('.settings-head');
-      const fullscreen = document.getElementById('toggle-fullscreen');
-      const newMatch = document.getElementById('start-new');
-      if (header && fullscreen && newMatch) {
-        header.insertBefore(fullscreen, newMatch);
-      }
-    }
-  };
-  render();
-})();
-</script>
-
-<style>
-/* Centralna traka uža za ukupno 5 px */
-#app {
-  grid-template-columns: minmax(0, 1fr) calc(10% - 5px) minmax(0, 1fr);
-}
-
-/* Linije headera */
-.side.left .side-header::after {
-  left: calc(13% + 30px);
-}
-.side.right .side-header::after {
-  right: calc(13% + 30px);
-}
-
-/* Nazivi ekipa bez paddinga */
-.team-name {
-  max-width: 96%;
-  padding: 0;
-}
-</style>
-
-<script>
-(() => {
-  const previousRender = render;
-
-  render = function (...args) {
-    const result = previousRender.apply(this, args);
-
-    for (let side = 0; side < 2; side++) {
-      const location = side === 0 ? 'left' : 'right';
-      const id = displayId(side);
-      const name = plainName(id);
-
-      const label = document.getElementById('name-' + location);
-      const score = document.getElementById('points-' + location);
-
-      label.style.fontSize =
-        `clamp(17px,${Math.min(13.2, 210 / (name.length + 5)).toFixed(2)}vh,84px)`;
-
-      score.style.fontSize = Math.max(...state.points) > 99
-        ? 'min(59vh,27vw)'
-        : 'min(85vh,41vw)';
-    }
-
-    return result;
-  };
-
-  render();
-})();
-</script>
-
 </body>
 </html>
