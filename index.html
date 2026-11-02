@@ -222,5 +222,114 @@ async function keepAwake(){try{if('wakeLock' in navigator){wakeLock=await naviga
 function init(){read();render();showHome();keepAwake();document.getElementById('points-left').onclick=()=>add(0);document.getElementById('points-right').onclick=()=>add(1);document.getElementById('minus-left').onclick=()=>subtract(0);document.getElementById('minus-right').onclick=()=>subtract(1);document.getElementById('undo').onclick=undo;document.getElementById('swap').onclick=swap;document.getElementById('settings').onclick=showSettings;document.getElementById('name-left').onclick=()=>showNames(0);document.getElementById('name-right').onclick=()=>showNames(1);document.addEventListener('visibilitychange',()=>{if(!document.hidden)keepAwake()});}
 init();
 </script>
+  
+<style>
+.team-name {
+  max-width: 93%;
+  padding: 0;
+}
+.sets {
+  font-size: clamp(35px, 27.3vh, 193px);
+  font-weight: 600;
+}
+.points {
+  font-size: min(78vh, 38vw);
+}
+#settings svg {
+  width: min(6.6vh, 36px);
+  height: min(6.6vh, 36px);
+}
+.settings-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+.settings-head h1 {
+  margin: 0;
+  text-align: left;
+  white-space: nowrap;
+  font-size: clamp(15px, 4.1vh, 24px);
+}
+.settings-head #start-new {
+  justify-self: end;
+  min-width: 0;
+  background: transparent;
+  border: 1px solid #64aaff;
+  color: #64aaff;
+  padding: 7px 11px;
+  min-height: 34px;
+}
+.fullscreen-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  width: 38px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  background: #292929;
+  border: 1px solid #666;
+  border-radius: 7px;
+  font-size: 0 !important;
+}
+.fullscreen-action::before {
+  content: "⛶";
+  font-size: 25px;
+  color: #fff;
+  line-height: 1;
+}
+.score-mode {
+  position: relative;
+  gap: 0;
+}
+.score-mode input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+.score-mode:focus-within {
+  outline: 2px solid #83baff;
+  outline-offset: 2px;
+}
+</style>
+<script>
+(() => {
+  const oldRender = render;
+  render = function() {
+    oldRender();
+    for (let side = 0; side < 2; side++) {
+      const id = displayId(side);
+      const label = side === 0 ? 'left' : 'right';
+      const name = plainName(id);
+      document.getElementById('name-' + label).style.fontSize =
+        `clamp(15px,${Math.min(11.8,182/(name.length+5)).toFixed(2)}vh,76px)`;
+      document.getElementById('points-' + label).style.fontSize =
+        Math.max(...state.points) > 99
+          ? 'min(56vh,25vw)'
+          : 'min(78vh,38vw)';
+    }
+  };
+
+  const oldShowDialog = showDialog;
+  showDialog = function(type, html) {
+    oldShowDialog(type, html);
+    if (type === 'settings') {
+      const header = document.querySelector('.settings-head');
+      const fullscreen = document.getElementById('toggle-fullscreen');
+      const newMatch = document.getElementById('start-new');
+      if (header && fullscreen && newMatch) {
+        header.insertBefore(fullscreen, newMatch);
+      }
+    }
+  };
+  render();
+})();
+</script>
+
 </body>
 </html>
