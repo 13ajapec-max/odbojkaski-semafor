@@ -10,23 +10,24 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif}
 button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.42;cursor:default}
-#app{position:fixed;inset:0;background:#000;display:grid;grid-template-columns:minmax(0,1fr) 12% minmax(0,1fr)}
+#app{position:fixed;inset:0;background:#000;display:grid;grid-template-columns:minmax(0,1fr) 10% minmax(0,1fr)}
 .side{position:relative;min-width:0;height:100%;display:flex;flex-direction:column}
 .side-header{height:18%;position:relative;min-height:0;display:flex;align-items:flex-start;justify-content:center}
 .side-header:after{content:"";display:block;position:absolute;bottom:0;height:2px;background:#fff;opacity:.9}
 .side.left .side-header:after{left:13%;right:2%}
 .side.right .side-header:after{left:2%;right:13%}
-.team-name{background:transparent;color:#fff;font-weight:400;border:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:82%;font-size:clamp(19px,9.2vh,58px);height:100%;padding:0 .05vw;display:flex;align-items:center;justify-content:center;text-align:center;text-transform:uppercase}
-.sets{position:absolute;top:0;color:var(--yellow);font-size:clamp(26px,19vh,136px);font-weight:500;line-height:1;letter-spacing:-.04em;z-index:2}
+.team-name{background:transparent;color:#fff;font-weight:400;border:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:86%;font-size:clamp(20px,10.4vh,64px);height:100%;padding:0;display:flex;align-items:center;justify-content:center;text-align:center;text-transform:uppercase}
+.sets{position:absolute;top:0;color:var(--yellow);font-size:clamp(27px,20.5vh,145px);font-weight:600;line-height:1;letter-spacing:-.04em;z-index:2}
 .side.left .sets{left:1.5vw}.side.right .sets{right:1.5vw}
 .points{border:0;background:transparent;color:var(--accent);flex:1;min-height:0;width:100%;display:flex;justify-content:center;align-items:center;padding:0 0 2vh;line-height:.85;font-family:Arial,Helvetica,sans-serif;font-weight:400;font-size:min(71vh,34vw);font-variant-numeric:tabular-nums;letter-spacing:-.055em;user-select:none;touch-action:manipulation}
 .side.left .points>span{transform:translateX(-4%)}.side.right .points>span{transform:translateX(4%)}
 .points:active{background:#111}
-.center{height:100%;display:grid;grid-template-rows:18% 18% 28% 18% 18%;background:var(--strip);min-width:0;position:relative}
+/* SET 1, Undo, Promena strana i Minusi: potpuno jednake visine; zupcanik zauzima ostatak. */
+.center{height:100%;display:grid;grid-template-rows:18% 18% minmax(0,1fr) 18% 18%;background:var(--strip);min-width:0;position:relative}
 .center-title{color:var(--yellow);font-weight:400;font-size:clamp(13px,5.9vh,46px);white-space:nowrap;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:3px solid var(--line)}
 .control{color:#050505;background:transparent;border:0;border-bottom:3px solid var(--line);width:100%;min-height:0;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
 .control svg{width:min(4.4vh,24px);height:min(4.4vh,24px);fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-#settings svg{width:min(6.6vh,36px);height:min(6.6vh,36px)}
+#settings svg{width:min(8vh,43px);height:min(8vh,43px)}
 .control:active,.minus:active{background:#555}
 .minus-row{min-height:0;display:grid;grid-template-columns:1fr 1fr;position:relative}
 .minus-row:after{position:absolute;content:"";top:0;bottom:0;left:50%;width:3px;transform:translateX(-50%);background:#000;pointer-events:none}
@@ -127,7 +128,7 @@ function displayId(side){return state.sideMap[side]}
 function plainName(id){return (state.names[id]&&state.names[id].trim()||`EKIPA ${id===0?'A':'B'}`).toLocaleUpperCase('sr-RS')}
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function snapshot(){const {history,...data}=state;state.history.push(JSON.parse(JSON.stringify(data)));if(state.history.length>80)state.history.shift()}
-function render(){document.documentElement.style.setProperty('--accent',COLORS[state.color]||COLORS[0]);for(let side=0;side<2;side++){let id=displayId(side);let sideName=side===0?'left':'right';document.getElementById('sets-'+sideName).textContent=state.sets[id];let nameEl=document.getElementById('name-'+sideName);nameEl.textContent=plainName(id);nameEl.style.fontSize=`clamp(15px,${Math.min(9.2,140/(plainName(id).length+5)).toFixed(2)}vh,58px)`;let p=document.querySelector('#points-'+sideName+' span');p.textContent=state.points[id];p.parentElement.style.fontSize=(Math.max(...state.points)>99?'min(59vh,27vw)':'min(71vh,34vw)')}
+function render(){document.documentElement.style.setProperty('--accent',COLORS[state.color]||COLORS[0]);for(let side=0;side<2;side++){let id=displayId(side);let sideName=side===0?'left':'right';document.getElementById('sets-'+sideName).textContent=state.sets[id];let nameEl=document.getElementById('name-'+sideName);nameEl.textContent=plainName(id);nameEl.style.fontSize=`clamp(16px,${Math.min(10.4,154/(plainName(id).length+5)).toFixed(2)}vh,64px)`;let p=document.querySelector('#points-'+sideName+' span');p.textContent=state.points[id];p.parentElement.style.fontSize=(Math.max(...state.points)>99?'min(59vh,27vw)':'min(71vh,34vw)')}
  document.getElementById('set-label').textContent='SET '+state.setIndex;document.getElementById('undo').disabled=!state.history.length;save()}
 function currentWinner(){let p=state.points,need=state.limits[Math.min(state.setIndex-1,2)];for(let i=0;i<2;i++)if(p[i]>=need&&p[i]-p[1-i]>=2)return i;return null}
 function add(side){if(state.status!=='playing')return;let id=displayId(side);snapshot();state.points[id]++;render();let winner=currentWinner();if(winner!==null){state.status='set-ended';state.swapNext=true;render();showEnd()}}
