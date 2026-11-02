@@ -331,5 +331,56 @@ init();
 })();
 </script>
 
+<style>
+/* Centralna traka uža za ukupno 5 px */
+#app {
+  grid-template-columns: minmax(0, 1fr) calc(10% - 5px) minmax(0, 1fr);
+}
+
+/* Linije headera */
+.side.left .side-header::after {
+  left: calc(13% + 30px);
+}
+.side.right .side-header::after {
+  right: calc(13% + 30px);
+}
+
+/* Nazivi ekipa bez paddinga */
+.team-name {
+  max-width: 96%;
+  padding: 0;
+}
+</style>
+
+<script>
+(() => {
+  const previousRender = render;
+
+  render = function (...args) {
+    const result = previousRender.apply(this, args);
+
+    for (let side = 0; side < 2; side++) {
+      const location = side === 0 ? 'left' : 'right';
+      const id = displayId(side);
+      const name = plainName(id);
+
+      const label = document.getElementById('name-' + location);
+      const score = document.getElementById('points-' + location);
+
+      label.style.fontSize =
+        `clamp(17px,${Math.min(13.2, 210 / (name.length + 5)).toFixed(2)}vh,84px)`;
+
+      score.style.fontSize = Math.max(...state.points) > 99
+        ? 'min(59vh,27vw)'
+        : 'min(85vh,41vw)';
+    }
+
+    return result;
+  };
+
+  render();
+})();
+</script>
+
 </body>
 </html>
